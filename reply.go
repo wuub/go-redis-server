@@ -28,6 +28,15 @@ func (r *IntegerReply) WriteTo(w io.Writer) (int64, error) {
 	return int64(n), err
 }
 
+type Integer64Reply struct {
+	number int64
+}
+
+func (r *Integer64Reply) WriteTo(w io.Writer) (int64, error) {
+	n, err := w.Write([]byte(":" + strconv.FormatInt(r.number, 10) + "\r\n"))
+	return int64(n), err
+}
+
 type BulkReply struct {
 	value []byte
 }

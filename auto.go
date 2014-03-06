@@ -143,6 +143,8 @@ func (srv *Server) createReply(r *Request, val interface{}) (ReplyWriter, error)
 		return MultiBulkFromMap(v), nil
 	case int:
 		return &IntegerReply{number: v}, nil
+	case int64:
+		return &Integer64Reply{number: v}, nil
 	case *StatusReply:
 		return v, nil
 	case *MonitorReply:
